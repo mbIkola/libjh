@@ -11,7 +11,7 @@ CXXFLAGS += -Wall -Werror --std=c++11 $(OPTIMIZE)
 
 CFLAGS += -msse2
 
-EXPORTED_FUNCTIONS=-s EXPORTED_FUNCTIONS='["_jh" ]'
+EXPORTED_FUNCTIONS=-s EXPORTED_FUNCTIONS='["_jh", "_jh256" ]'
 EMSCRIPTEN_SETTINGS=-s "BINARYEN_METHOD='native-wasm'" -s WASM=1 -s  DISABLE_EXCEPTION_CATCHING=1 \
 				     -s NO_FILESYSTEM=1 $(EXPORTED_FUNCTIONS) \
 				      --post-js emscripten/emscripten.jh.post.js

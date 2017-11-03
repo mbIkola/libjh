@@ -85,7 +85,7 @@ public:
 protected:
     string calc(string input) {
         uint8_t *input_binary = hex2bin(input);
-        jh(input_binary, input.size()/2, digest_binary); ///, digest_size);
+        jh256(input_binary, input.size()/2, digest_binary); ///, digest_size);
         delete[] input_binary;
         return bin2hex(digest_binary, digest_size);
     }

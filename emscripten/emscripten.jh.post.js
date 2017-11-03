@@ -31,7 +31,7 @@ Module["jhWrapper"] = function jhWrapper( message ) {
     var inputHeap = _arrayToHeap(message);
     var outHeap   = _arrayToHeap(output);
 
-    Module.ccall('jh', null, [POINTER, INTEGER, POINTER], [inputHeap, message.length, outHeap ]);
+    Module.ccall('jh256', null, [POINTER, INTEGER, POINTER], [inputHeap, message.length, outHeap ]);
 
     var res = new output.constructor(outHeap.buffer, outHeap.byteOffset, output.length);
     _freeArray(outHeap);
