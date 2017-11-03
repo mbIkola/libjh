@@ -12,4 +12,6 @@ For wasm compilation you need either:
 - docker installed on pc (see emscripten/makefile) to build wasm and wrappers using emscripten SDK
 - npm, build-tools-essential, clang, cmake to build wasm using node-webassembly project (see package.json for details)
 
+#todo
+- sse2 implementation (currently using ansi c opt64)
 
