@@ -1,0 +1,32 @@
+{
+  "name": "libjh-wasm",
+  "version": "1.0.0",
+  "description": "64-bit optimized bitslice implementation of JH using ANSI C as WASM module",
+  "main": "dist/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "npm run test",
+    "build-wa": "wa compile -D __WEBASSEMBLY__ -l -O src/jh.c -I./include -o ./dist/wa/jh.wasm"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mbIkola/libjh.git"
+  },
+  "keywords": [
+    "jh",
+    "wasm",
+    "webassembly"
+  ],
+  "author": "Nickolay \"mbIkola\" Kharchevin <kharchevyn@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mbIkola/libjh/issues"
+  },
+  "homepage": "https://github.com/mbIkola/libjh#readme",
+  "devDependencies": {
+    "browserify": "^14.5.0",
+    "webassembly": "^0.11.0"
+  }
+}
