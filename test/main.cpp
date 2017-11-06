@@ -91,6 +91,25 @@ protected:
     }
 };
 
+class JhBenchTest : public ::testing::Test, public Hex2BinTrait {
+public:
+
+protected:
+    unsigned int calc(string input) {
+        uint8_t digest_binary[32];
+        const uint8_t ITERS = 255;
+        uint8_t *input_binary = hex2bin(input);
+        for ( unsigned int i = 0; i < input.size()/2; i++ ) {
+            for (unsigned int j = 0 ; j<ITERS; j++ ) {
+                input_binary[i] += j;
+                jh256(input_binary, input.size() / 2, digest_binary); ///, digest_size);
+            }
+        }
+        delete[] input_binary;
+        return input.size()/2 * ITERS;
+    }
+};
+
 
 
 TEST_P(JhTest, defaultFixturesTest) {
@@ -102,6 +121,13 @@ TEST_P(JhTest, defaultFixturesTest) {
     EXPECT_EQ(calculatedDigest, expectedDigest);
 }
 
+TEST_F(JhBenchTest, benchmark) {
+    clock_t t = clock();
+    unsigned int iterations = calc("ее душа попадет в ад, ее будут рвать на куски, снова и снова, во тьме, среди криков отчаяния, целую вечность");
+    const double work_time_per_hash = (clock() - t)  / iterations;
+    cerr << "Work time " << work_time_per_hash << " <---------------------- " << iterations  <<  " hohoho " << endl;
+    ASSERT_TRUE(work_time_per_hash <= 3);
+}
 
 
 
