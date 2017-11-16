@@ -18,6 +18,7 @@
 #include <string.h>
 #include <stdint.h>
 #include <assert.h>
+#include "jh/jh.h"
 
 typedef unsigned long long uint64;
 
@@ -376,9 +377,7 @@ void jh(unsigned bit_len, const uint8_t input[], size_t input_bit_length, uint8_
 	assert(ret == SUCCESS);
 }
 
-
-__attribute__((visibility ("default"))) void jh256(const uint8_t input[],
-                                                          size_t input_byte_length, uint8_t output[]
-) {
+void __attribute__((used))  __attribute__((visibility("default"))) EMSCRIPTEN_KEEPALIVE
+jh256(const uint8_t input[], size_t input_byte_length, uint8_t output[]) {
       jh(256, input, input_byte_length * 8, output);
 }
